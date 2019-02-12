@@ -4,6 +4,7 @@ class Gdb < Formula
     url "https://ftp.gnu.org/gnu/gdb/gdb-8.0.1.tar.xz"
     mirror "https://ftpmirror.gnu.org/gdb/gdb-8.0.1.tar.xz"
     sha256 "3dbd5f93e36ba2815ad0efab030dcd0c7b211d7b353a40a53f4c02d7d56295e3"
+    revision 1
   
     bottle do
       sha256 "e98ad847402592bd48a9b1468fefb2fac32aff1fa19c2681c3cea7fb457baaa0" => :high_sierra
@@ -29,6 +30,21 @@ class Gdb < Formula
         clang: error: unable to execute command: Segmentation fault: 11
         Test done on: Apple LLVM version 6.0 (clang-600.0.56) (based on LLVM 3.5svn)
       EOS
+    end
+
+    # Fix build with all targets. Remove if 8.2.1+
+    # https://sourceware.org/git/gitweb.cgi?p=binutils-gdb.git;a=commitdiff;h=0c0a40e0abb9f1a584330a1911ad06b3686e5361
+    patch do
+        url "https://raw.githubusercontent.com/Homebrew/formula-patches/d457e55/gdb/all-targets.diff"
+        sha256 "1cb8a1b8c4b4833212e16ba8cfbe620843aba0cba0f5111c2728c3314e10d8fd"
+    end
+
+    # Fix debugging of executables of Xcode 10 and later
+    # created for 10.14 and newer versions of macOS. Remove if 8.2.1+
+    # https://sourceware.org/git/gitweb.cgi?p=binutils-gdb.git;h=fc7b364aba41819a5d74ae0ac69f050af282d057
+    patch do
+        url "https://raw.githubusercontent.com/Homebrew/formula-patches/d457e55/gdb/mojave.diff"
+        sha256 "6264c71b57a0d5d4aed11430d352b03639370b7d36a5b520e189a6a1f105e383"
     end
   
     def install
