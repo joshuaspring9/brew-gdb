@@ -16,12 +16,6 @@ class Gdb < Formula
       sha256 "1cb8a1b8c4b4833212e16ba8cfbe620843aba0cba0f5111c2728c3314e10d8fd"
     end
 
-    # Fix debugging of executeables
-    patch do
-      url "https://raw.githubusercontent.com/joshuaspring9/brew-gdb/master/patches/darwin-nat.patch"
-      sha256 "1cb8a1b8c4b4833212e16ba8cfbe620843aba0cba0f5111c2728c3314e10d8fd"
-    end
-
     # Fix debugging of executables of Xcode 10 and later
     # created for 10.14 and newer versions of macOS. Remove for 8.3
     # https://sourceware.org/git/gitweb.cgi?p=binutils-gdb.git;h=fc7b364aba41819a5d74ae0ac69f050af282d057
@@ -55,6 +49,8 @@ class Gdb < Formula
     EOS
   end
 
+  patch :DATA
+
   def install
     args = %W[
       --prefix=#{prefix}
@@ -85,3 +81,16 @@ class Gdb < Formula
     system bin/"gdb", bin/"gdb", "-configuration"
   end
 end
+
+__END__
+--- a/gdb/darwin-nat.c	2019-02-26 14:43:44.000000000 -0500
++++ b/gdb/darwin-nat.c	2019-02-26 14:46:57.000000000 -0500
+@@ -1151,7 +1151,7 @@
+ 			      res, wstatus);
+ 
+ 	      /* Looks necessary on Leopard and harmless...  */
+-	      wait4 (inf->pid, &wstatus, 0, NULL);
++	      wait4 (inf->pid, &wstatus, WNOHANG, NULL);
+ 
+ 	      inferior_ptid = ptid_t (inf->pid, 0, 0);
+ 	      return inferior_ptid;
