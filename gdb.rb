@@ -18,7 +18,7 @@ class Gdb < Formula
 
     # Fix debugging of executeables
     patch do
-      url "https://raw.githubusercontent.com/joshuaspring9/brew-gdb/patches/darwin-nat.patch"
+      url "https://raw.githubusercontent.com/joshuaspring9/brew-gdb/master/patches/darwin-nat.patch"
       sha256 "1cb8a1b8c4b4833212e16ba8cfbe620843aba0cba0f5111c2728c3314e10d8fd"
     end
 
