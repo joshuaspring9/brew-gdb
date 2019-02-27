@@ -1,5 +1,5 @@
 # Homebrew GDB Formula
-This is a custom version of Homebrew's GDB formula, designed to work with MacOS Mojave 10.14.  While many users report that GDB 8.0.1 was the last version to work properly on MacOS, that version cannot recognize executables created in MacOS Mojave 10.14 because of a new flag present.  This formula builds version 8.0.1 with the proper patches to recognize these executables, resulting in a working version of GDB 8.0.1 in Mojave.
+This is a custom version of Homebrew's GDB formula, designed to work with MacOS Mojave 10.14.  While many users report that GDB 8.0.1 was the last version to work properly on MacOS, that version cannot recognize executables created in MacOS Mojave 10.14 because of a new flag present.  This formula builds the head version with the proper patches to enable debugging, resulting in a working version of GDB in Mojave.
 
 # Installation
 Simply run:
