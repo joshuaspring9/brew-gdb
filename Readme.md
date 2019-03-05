@@ -4,7 +4,7 @@ This is a custom version of Homebrew's GDB formula, designed to work with MacOS 
 # Installation
 Simply run:
 ```bash
-brew install https://raw.githubusercontent.com/joshuaspring9/brew-gdb/master/gdb.rb
+brew install https://raw.githubusercontent.com/joshuaspring9/brew-gdb/master/gdb.rb --HEAD
 ```
 To prevent Homebrew from updating the package and breaking the installation, run:
 ```bash
